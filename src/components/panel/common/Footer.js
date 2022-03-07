@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer>
       <Typography variant="overline">
-        The Accountant &copy; 2022 All Rights Reserved -{" "}
+        The Accountant &copy; 2022 All Rights Reserved -
         <a
           href="https://www.flaticon.com/de/kostenlose-icons/open-source"
           title="open source Icons"
