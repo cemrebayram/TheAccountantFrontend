@@ -143,13 +143,8 @@ export default function Login() {
         <Grid container>
           <Grid item sx={12} style={{ bottom: "0px", position: "absolute" }}>
             <Typography variant="overline">
-              The Accountant &copy; 2022 All Rights Reserved -{" "}
-              <a
-                href="https://www.flaticon.com/de/kostenlose-icons/open-source"
-                title="open source Icons"
-              >
-                Open source Icons erstellt von Pixel perfect - Flaticon
-              </a>
+              The Accountant &copy; 2022 All Rights Reserved - Open source Icons
+              erstellt von Pixel perfect - Flaticon
             </Typography>
           </Grid>
         </Grid>
