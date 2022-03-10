@@ -12,11 +12,9 @@ export default function Offser() {
         dispatch(fetchContractNotes());
     }, [])
     return (
-        <Container>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+        <Container  sx={{
+            marginTop: '10rem',
+        }}>
             <Divider sx={{ margin: "30px 0"}}>
             <img width="50px" src="/../../contractNote.png"></img>
             </Divider>  

@@ -12,7 +12,11 @@ export default function Offser() {
         dispatch(fetchInvoices());
     }, [])
     return (
-        <Container>
+        <Container 
+            sx={{
+                marginTop: '10rem',
+            }}
+        >
             <Typography variant="h4">Invoice</Typography>
             <InvoiceInputForm/>
             <Button onClick={()=>{

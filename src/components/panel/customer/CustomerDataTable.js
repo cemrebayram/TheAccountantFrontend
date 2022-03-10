@@ -46,7 +46,7 @@ export default function CustomerDataTable() {
 
     ];
     return (
-        <Container sx={{ padding: "10px 0" }}>
+        <Container sx={{ padding: "10px 0", marginTop:"1em" }}>
             <br/>
             <center>
             <img width="100px" src="/../../createCustomer.png"></img>

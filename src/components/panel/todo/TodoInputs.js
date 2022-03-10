@@ -18,7 +18,9 @@ export default function Todo() {
       // dispatch(fetchTodos())
     }
     return (
-        <Container>
+        <Container  sx={{
+            marginTop: '10rem',
+        }}>
             <Grid container justifyContent="center" alignItems="center" rowSpacing={3} mt={1} >
                 <Grid item md={12} xs={12}>
                     <Typography variant="h4" >Todo</Typography>

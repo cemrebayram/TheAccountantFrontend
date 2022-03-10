@@ -18,10 +18,11 @@ export default function CreateCustomerForm() {
       // dispatch(fetchCustomers())
     }
     return (
-        <Container>
-            <br/>
-            <br/>
-            <br/>
+        <Container 
+        sx={{
+            marginTop: '10rem',
+        }}
+        >
             <Grid container justifyContent="center" alignItems="center" rowSpacing={3} mt={1} >
                 <Grid item md={12} xs={12}>
                     <Typography variant="h6" >Create Customer</Typography>

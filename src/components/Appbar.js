@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { clearUser } from '../store/slices/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import {DashboardCustomizeRounded} from '@mui/icons-material';
+import {DashboardCustomizeRounded, Person} from '@mui/icons-material';
 
 
 
@@ -33,9 +33,13 @@ export default function ButtonAppBar() {
           </Typography>
           {
             !user.token ? <><Button component={Link} to="/login" color="inherit">Login</Button>
-            <Button component={Link} to="/register" color="inherit">Register</Button></> : <Button onClick={()=>{
+            <Button component={Link} to="/register" color="inherit">Register</Button></> :<> <IconButton onClick={
+              ()=>{
+                navigate('/panel/profile')
+              }
+            } ><Person/></IconButton>  | <Button onClick={()=>{
               dispatch(clearUser());
-            }} color="inherit">Logout</Button>
+            }} color="inherit">Logout</Button></>
           }
         </Toolbar>
       </AppBar>
