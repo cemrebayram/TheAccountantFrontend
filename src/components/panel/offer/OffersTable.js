@@ -17,16 +17,16 @@ export default function OffersTable({ offers }) {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {offers.map((offer) => (
+                {offers.filter((offer)=>offer.customer?.name&&offer.customer?.companyName).map((offer) => (
                     <TableRow
                         key={offer._id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                            {offer.customer.companyName}
+                            {offer.customer?.companyName}
                         </TableCell>
                         <TableCell component="th" scope="row">
-                            {offer.customer.name}
+                            {offer.customer?.name}
                         </TableCell>
                         <TableCell>
                             <IconButton onClick={

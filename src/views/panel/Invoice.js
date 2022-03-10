@@ -37,4 +37,34 @@ export default function Offser() {
       <InvoicesTable invoices={invoices} />
     </Container>
   );
+
+  const newInvoice = useSelector((state) => state.invoice.newInvoice);
+  const invoices = useSelector((state) => state.invoice.invoices);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchInvoices());
+  }, []);
+  return (
+    <Container
+      sx={{
+        marginTop: "10rem",
+      }}
+    >
+      <Typography variant="h4">Invoice</Typography>
+      <InvoiceInputForm />
+      <Button
+        onClick={() => {
+          dispatch(createInvoice(newInvoice));
+          dispatch(fetchInvoices());
+        }}
+        sx={{ marginTop: "10px" }}
+        fullWidth
+        variant="contained"
+        color="warning"
+      >
+        Create Invoice
+      </Button>
+      <InvoicesTable invoices={invoices} />
+    </Container>
+  );
 }
