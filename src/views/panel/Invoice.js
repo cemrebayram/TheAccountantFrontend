@@ -1,6 +1,6 @@
 import React from "react";
 import InvoiceInputForm from "../../components/panel/invoice/InvoiceInputForm";
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Container, Typography, Divider } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { createInvoice, fetchInvoices } from "../../store/slices/invoiceSlice";
 import InvoicesTable from "../../components/panel/invoice/InvoicesTable";
