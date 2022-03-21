@@ -3,11 +3,11 @@ import store from "../store/store";
 import { clearUser } from "../store/slices/userSlice";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://theaccountant-backend.herokuapp.com"
 });
 
 instance.interceptors.request.use((config) => {
-  const token = store.getState().user.token;
+  const token = store.getState().user.token; 
   if (token) {
     config.headers.token = token;
   }
