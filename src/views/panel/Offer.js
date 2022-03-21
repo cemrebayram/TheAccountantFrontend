@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import OfferInputForm from "../../components/panel/offer/OfferInputForm";
 import { Button, Container, Typography, Divider } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { createOffer, fetchOffers } from "../../store/slices/offerSlice";
 import OffersTable from "../../components/panel/offer/OffersTable";
+import Notification from "../../components/panel/common/Notification";
 export default function Offser() {
   const newOffer = useSelector((state) => state.offer.newOffer);
   const offers = useSelector((state) => state.offer.offers);
@@ -11,12 +12,27 @@ export default function Offser() {
   React.useEffect(() => {
     dispatch(fetchOffers());
   }, []);
+  const [alertData, setAlertData] = useState({
+    open: false,
+    severity: "success",
+    message: "",
+  });
+  const showAlert = (message, severity) => {
+    setAlertData({
+      severity,
+      open: true,
+      message,
+    });
+  };
   return (
-    <Container>
-      <br />
-      <br />
-      <br />
-      <br />
+    <Container sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      marginTop: "5em",
+      paddingBottom: "5em",
+    }} >
+      <Notification open={alertData.open} severity={alertData.severity} message={alertData.message} />
       <Divider sx={{ margin: "30px 0" }}>
         <img width="50px" src="/../../offer.png"></img>
       </Divider>
@@ -25,9 +41,10 @@ export default function Offser() {
       <br />
       <br />
       <Button
-        onClick={() => {
-          dispatch(createOffer(newOffer));
+        onClick={async () => {
+          await dispatch(createOffer(newOffer));
           dispatch(fetchOffers());
+          showAlert("Offer created successfully", "success");
         }}
         sx={{ marginTop: "10px" }}
         fullWidth
@@ -37,11 +54,6 @@ export default function Offser() {
         Create Offer
       </Button>
       <OffersTable offers={offers} />
-
-      <br />
-      <br />
-      <br />
-      <br />
     </Container>
   );
 }

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, nanoid } from '@reduxjs/toolkit'
 import axios from '../../service/axios'
 export const fetchOffers = createAsyncThunk('offer/fetchOffers', async () => {
+    console.log("FETCH OFFERS ÇALIŞTI");
     let offers = await axios.get('/offer')
     return offers.data;
 })
@@ -36,9 +37,10 @@ const base64toBlob = (data) => {
 export const offerSlice = createSlice({
     name: 'offer',
     initialState: {
+        tempOfferProductQuantity: 1,
         newOffer: {
             customer: {}, // { _id:'adadadd' }
-            products: [], // [ { _id:'adadadd' }, { _id:'adadadd' } ]
+            products: [], // [ { _id:'adadadd' , quantity:0 }, { _id:'adadadd' ,  quantity:0 } ]
         },
         offers: [],
     },
@@ -54,6 +56,10 @@ export const offerSlice = createSlice({
                 customer: {},
                 products: [],
             };
+            state.tempOfferProductQuantity = 1;
+        },
+        setTempOfferProductQuantity: (state, action) => {
+            state.tempOfferProductQuantity = action.payload;
         }
     },
     extraReducers(builder) {
@@ -61,7 +67,8 @@ export const offerSlice = createSlice({
             state.offers = action.payload;
         });
         builder.addCase(createOffer.fulfilled, (state, action) => {
-            console.log("Eklendi");
+            //dispatch fetchOffers
+            
         });
         builder.addCase(generateOfferPDF.fulfilled, (state, action) => {
             var blob = new Blob([action.payload], { type: 'application/pdf' });
@@ -71,6 +78,6 @@ export const offerSlice = createSlice({
     }
 })
 
-export const { setOffers, clearNewOffer, setNewOffer } = offerSlice.actions
+export const { setOffers, clearNewOffer, setNewOffer,setTempOfferProductQuantity } = offerSlice.actions
 
 export default offerSlice.reducer

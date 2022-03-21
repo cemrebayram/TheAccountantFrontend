@@ -3,7 +3,7 @@ import store from "../store/store";
 import { clearUser } from "../store/slices/userSlice";
 
 const instance = axios.create({
-  baseURL: "https://theaccountant-backend.herokuapp.com",
+  baseURL: "http://localhost:3000",
 });
 
 instance.interceptors.request.use((config) => {
