@@ -49,8 +49,10 @@ export const customerSlice = createSlice({
             address: '',
             uid: '',
             companyName:'',
+            plz: '',
             telefon: '',
-            email: ''
+            email: '',
+            city: '',
         },
         customers: [],
     },
@@ -70,10 +72,12 @@ export const customerSlice = createSlice({
                 uid: '',
                 companyName:'',
                 telefon: '',
-                email: ''
+                email: '',
+                plz: '',
+                city: '',
             };
             //window.location.href = '/login';
-            console.log("clearCustomer");
+            return state;
         }
     },
     extraReducers(builder) {
