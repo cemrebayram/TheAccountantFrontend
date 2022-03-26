@@ -36,6 +36,7 @@ const base64toBlob = (data) => {
 export const invoiceSlice = createSlice({
     name: 'invoice',
     initialState: {
+        tempInvoiceProductQuantity: 1,
         newInvoice: {
             customer: {}, // { _id:'adadadd' }
             products: [], // [ { _id:'adadadd' }, { _id:'adadadd' } ]
@@ -54,6 +55,10 @@ export const invoiceSlice = createSlice({
                 customer: {},
                 products: [],
             };
+            state.tempInvoiceProductQuantity = 1;
+        },
+        setTempInvoiceProductQuantity: (state, action) => {
+            state.tempInvoiceProductQuantity = action.payload;
         }
     },
     extraReducers(builder) {
@@ -71,6 +76,7 @@ export const invoiceSlice = createSlice({
     }
 })
 
-export const { setInvoices, clearNewInvoice, setNewInvoice } = invoiceSlice.actions
+export const { setInvoices, clearNewInvoice, setNewInvoice, setTempInvoiceProductQuantity } = invoiceSlice.actions;
+
 
 export default invoiceSlice.reducer

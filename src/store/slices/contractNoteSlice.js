@@ -36,6 +36,7 @@ const base64toBlob = (data) => {
 export const contractNoteSlice = createSlice({
     name: 'contractNote',
     initialState: {
+        tempContractNoteProductQuantity: 1,
         newContractNote: {
             customer: {}, // { _id:'adadadd' }
             products: [], // [ { _id:'adadadd' }, { _id:'adadadd' } ]
@@ -54,6 +55,10 @@ export const contractNoteSlice = createSlice({
                 customer: {},
                 products: [],
             };
+            state.tempContractNoteProductQuantity = 1;
+        },
+        setTempContractNoteProductQuantity: (state, action) => {
+            state.tempContractNoteProductQuantity = action.payload;
         }
     },
     extraReducers(builder) {
@@ -71,6 +76,6 @@ export const contractNoteSlice = createSlice({
     }
 })
 
-export const { setContractNotes, clearNewContractNote, setNewContractNote } = contractNoteSlice.actions
+export const { setContractNotes, clearNewContractNote, setNewContractNote,setTempContractNoteProductQuantity } = contractNoteSlice.actions
 
 export default contractNoteSlice.reducer

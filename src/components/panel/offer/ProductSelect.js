@@ -14,6 +14,7 @@ import {
   setTempOfferProductQuantity,
 } from "../../../store/slices/offerSlice";
 import { Add } from "@mui/icons-material";
+
 import QuantitySelect from "../common/QuantitySelect";
 
 export default function ProductSelect() {
@@ -82,7 +83,7 @@ export default function ProductSelect() {
                     products: [
                       ...newOffer.products,
                       {
-                        product: {_id:selectedProduct},
+                        product: { _id: selectedProduct },
                         quantity: tempOfferProductQuantity,
                       },
                     ],
