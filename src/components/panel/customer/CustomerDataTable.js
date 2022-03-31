@@ -58,9 +58,7 @@ export default function CustomerDataTable() {
         input.focus();
         input.click();
       }, 500);
-    } catch (error) {
-      console.log("SIKINTI YOK");
-    }
+    } catch (error) {}
   };
   console.log(customers);
   const handleDeleteClick = async (id) => {
@@ -68,8 +66,7 @@ export default function CustomerDataTable() {
     dispatch(fetchCustomers());
   };
   useEffect(() => {
-    //ikinci parametresinde boş bir dizi varsa bunun gibi yalnızca bir kere çalışır.
-    dispatch(fetchCustomers()); //customerları serverdan çekiyoruz.
+    dispatch(fetchCustomers());
   }, []);
   const columns = [
     {

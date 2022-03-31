@@ -11,15 +11,12 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "../../../service/axios";
 import {
   setNewProduct,
   clearNewProduct,
   createProduct,
   fetchProducts,
 } from "../../../store/slices/productSlice";
-import NumberFormat from "react-number-format";
-import PropTypes from "prop-types";
 export default function Product() {
   const product = useSelector((state) => state.product.newProduct);
   useEffect(() => {
