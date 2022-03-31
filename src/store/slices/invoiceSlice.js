@@ -47,6 +47,7 @@ const base64toBlob = (data) => {
 export const invoiceSlice = createSlice({
   name: "invoice",
   initialState: {
+    tempInvoiceProductQuantity: 1,
     newInvoice: {
       customer: {}, // { _id:'adadadd' }
       products: [], // [ { _id:'adadadd' }, { _id:'adadadd' } ]
@@ -65,13 +66,19 @@ export const invoiceSlice = createSlice({
         customer: {},
         products: [],
       };
+      state.tempInvoiceProductQuantity = 1;
+    },
+    setTempInvoiceProductQuantity: (state, action) => {
+      state.tempInvoiceProductQuantity = action.payload;
     },
   },
   extraReducers(builder) {
     builder.addCase(fetchInvoices.fulfilled, (state, action) => {
       state.invoices = action.payload;
     });
-    builder.addCase(createInvoice.fulfilled, (state, action) => {});
+    builder.addCase(createInvoice.fulfilled, (state, action) => {
+      console.log("Eklendi");
+    });
     builder.addCase(generateInvoicePDF.fulfilled, (state, action) => {
       var blob = new Blob([action.payload], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
@@ -80,7 +87,11 @@ export const invoiceSlice = createSlice({
   },
 });
 
-export const { setInvoices, clearNewInvoice, setNewInvoice } =
-  invoiceSlice.actions;
+export const {
+  setInvoices,
+  clearNewInvoice,
+  setNewInvoice,
+  setTempInvoiceProductQuantity,
+} = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;
