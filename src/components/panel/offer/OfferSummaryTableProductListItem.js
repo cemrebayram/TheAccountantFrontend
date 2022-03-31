@@ -18,8 +18,17 @@ export default function OfferSummaryTableProductListItem({ product }) {
       <TableCell>
         <Typography variant="h6">{product.price} €</Typography>
       </TableCell>
+      <TableCell>x</TableCell>
+      <TableCell>
+        <Typography variant="h6">{product.quantity}</Typography>
+      </TableCell>
       <TableCell>
         <Typography variant="h6">{product.unit}</Typography>
+      </TableCell>
+      <TableCell>
+        <Typography variant="h6">
+          {product.price * product.quantity} €
+        </Typography>
       </TableCell>
     </TableRow>
   );
