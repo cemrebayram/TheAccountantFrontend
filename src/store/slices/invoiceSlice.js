@@ -76,9 +76,7 @@ export const invoiceSlice = createSlice({
     builder.addCase(fetchInvoices.fulfilled, (state, action) => {
       state.invoices = action.payload;
     });
-    builder.addCase(createInvoice.fulfilled, (state, action) => {
-      console.log("Eklendi");
-    });
+    builder.addCase(createInvoice.fulfilled, (state, action) => {});
     builder.addCase(generateInvoicePDF.fulfilled, (state, action) => {
       var blob = new Blob([action.payload], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);

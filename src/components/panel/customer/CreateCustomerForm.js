@@ -18,9 +18,9 @@ export default function CreateCustomerForm() {
   const handleChange = (e) => {
     dispatch(setNewCustomer({ ...customer, [e.target.name]: e.target.value }));
   };
-  const handleCreateCustomer = (e) => {
-    dispatch(createCustomer(customer));
-    // dispatch(fetchCustomers())
+  const handleCreateCustomer = async (e) => {
+    await dispatch(createCustomer(customer));
+    dispatch(clearNewCustomer());
   };
   return (
     <Container

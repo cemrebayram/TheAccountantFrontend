@@ -44,9 +44,10 @@ const base64toBlob = (data) => {
 export const offerSlice = createSlice({
   name: "offer",
   initialState: {
+    tempOfferProductQuantity: 1,
     newOffer: {
       customer: {}, // { _id:'adadadd' }
-      products: [], // [ { _id:'adadadd' }, { _id:'adadadd' } ]
+      products: [], // [ { _id:'adadadd' , quantity:0 }, { _id:'adadadd' ,  quantity:0 } ]
     },
     offers: [],
   },
@@ -62,13 +63,19 @@ export const offerSlice = createSlice({
         customer: {},
         products: [],
       };
+      state.tempOfferProductQuantity = 1;
+    },
+    setTempOfferProductQuantity: (state, action) => {
+      state.tempOfferProductQuantity = action.payload;
     },
   },
   extraReducers(builder) {
     builder.addCase(fetchOffers.fulfilled, (state, action) => {
       state.offers = action.payload;
     });
-    builder.addCase(createOffer.fulfilled, (state, action) => {});
+    builder.addCase(createOffer.fulfilled, (state, action) => {
+      //dispatch fetchOffers
+    });
     builder.addCase(generateOfferPDF.fulfilled, (state, action) => {
       var blob = new Blob([action.payload], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
@@ -77,6 +84,11 @@ export const offerSlice = createSlice({
   },
 });
 
-export const { setOffers, clearNewOffer, setNewOffer } = offerSlice.actions;
+export const {
+  setOffers,
+  clearNewOffer,
+  setNewOffer,
+  setTempOfferProductQuantity,
+} = offerSlice.actions;
 
 export default offerSlice.reducer;

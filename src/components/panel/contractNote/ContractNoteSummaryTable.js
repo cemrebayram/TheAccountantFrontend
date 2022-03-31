@@ -47,12 +47,20 @@ export default function ContractNoteSummaryTable() {
       <Grid item md={6}>
         <Typography variant="overline">Products</Typography>
         <List dense>
-          {newContractNote.products.map((product, index) => (
-            <ContractNoteSummaryTableProductListItem
-              key={index}
-              product={products.find((_product) => _product.id == product._id)}
-            />
-          ))}
+          {newContractNote.products.map((product, index) => {
+            let theproduct = {
+              ...products.find(
+                (_product) => _product.id == product.product._id
+              ),
+              quantity: product.quantity,
+            };
+            return (
+              <ContractNoteSummaryTableProductListItem
+                key={index}
+                product={theproduct}
+              />
+            );
+          })}
         </List>
       </Grid>
     </Grid>

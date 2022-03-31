@@ -16,6 +16,8 @@ import {
 import { Add } from "@mui/icons-material";
 import QuantitySelect from "../common/QuantitySelect";
 
+import QuantitySelect from "../common/QuantitySelect";
+
 export default function ProductSelect() {
   const dispatch = useDispatch();
   useEffect(async () => {

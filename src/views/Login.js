@@ -61,7 +61,14 @@ export default function Login() {
     }
   };
   return (
-    <Container>
+    <Container
+      sx= {{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        marginTop: "5em",
+      }}
+    >
       <Snackbar
         open={alertData.open}
         autoHideDuration={6000}
@@ -79,10 +86,6 @@ export default function Login() {
           {alertData.message}
         </Alert>
       </Snackbar>
-      <br />
-      <br />
-      <br />
-      <br />
       <Divider sx={{ margin: "30px 0" }}>
         <img width="60px" src="/../../key.png"></img>
       </Divider>

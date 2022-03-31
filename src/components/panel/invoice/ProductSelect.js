@@ -9,14 +9,17 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../store/slices/productSlice";
-import { setNewInvoice } from "../../../store/slices/invoiceSlice";
+import { setNewInvoice,setTempInvoiceProductQuantity } from "../../../store/slices/invoiceSlice";
 import { Add } from "@mui/icons-material";
-
+import QuantitySelect from "../common/QuantitySelect";
 export default function ProductSelect() {
   const dispatch = useDispatch();
   useEffect(async () => {
     await dispatch(await fetchProducts());
   }, []);
+  const tempInvoiceProductQuantity = useSelector(
+    (state) => state.invoice.tempInvoiceProductQuantity
+  );
   const [selectedProduct, setSelectedProduct] = useState("");
   const products = useSelector((state) => state.product.products);
   const newInvoice = useSelector((state) => state.invoice.newInvoice);
@@ -28,7 +31,7 @@ export default function ProductSelect() {
       spacing={3}
       rowSpacing={3}
     >
-      <Grid item xs={8}>
+      <Grid item xs={6}>
         <InputLabel id="demo-simple-select-label">Select Product</InputLabel>
         {products.length > 0 ? (
           <Select
@@ -50,6 +53,15 @@ export default function ProductSelect() {
           <Typography>No Products</Typography>
         )}
       </Grid>
+      <Grid item xs={2}>
+        <InputLabel>Quantity</InputLabel>
+        <QuantitySelect
+          value={tempInvoiceProductQuantity}
+          setter={(value) => {
+            dispatch(setTempInvoiceProductQuantity(value));
+          }}
+        />
+      </Grid>
       <Grid item xs={4}>
         <Button
           onClick={() => {
@@ -57,17 +69,21 @@ export default function ProductSelect() {
               let newProduct = newInvoice.products.find(
                 (product) => product._id == selectedProduct
               );
-              if (!newProduct)
+              if (!newProduct) {
                 dispatch(
                   setNewInvoice({
                     ...newInvoice,
                     products: [
                       ...newInvoice.products,
-                      { _id: selectedProduct },
+                      {
+                        product: { _id: selectedProduct },
+                        quantity: tempInvoiceProductQuantity,
+                      },
                     ],
                   })
                 );
-              else alert("Product already added");
+                dispatch(setTempInvoiceProductQuantity(1));
+              } else alert("Product already added");
             }
           }}
           fullWidth

@@ -13,13 +13,22 @@ export default function InvoiceSummaryTableProductListItem({ product }) {
   return (
     <TableRow>
       <TableCell>
-        <Typography variant="h6">{product.title}</Typography>
+        <Typography variant="caption">{product.title}</Typography>
       </TableCell>
       <TableCell>
-        <Typography variant="h6">{product.price}</Typography>
+        <Typography variant="caption">{product.price} €</Typography>
+      </TableCell>
+      <TableCell>x</TableCell>
+      <TableCell>
+        <Typography variant="caption">{product.quantity}</Typography>
       </TableCell>
       <TableCell>
-        <Typography variant="h6">{product.unit}</Typography>
+        <Typography variant="caption">{product.unit}</Typography>
+      </TableCell>
+      <TableCell>
+        <Typography variant="caption">
+          {product.price * product.quantity} €
+        </Typography>
       </TableCell>
     </TableRow>
   );

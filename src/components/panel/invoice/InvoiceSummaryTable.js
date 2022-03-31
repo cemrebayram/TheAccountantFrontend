@@ -43,12 +43,20 @@ export default function InvoiceSummaryTable() {
       <Grid item md={6}>
         <Typography variant="overline">Products</Typography>
         <List dense>
-          {newInvoice.products.map((product, index) => (
-            <InvoiceSummaryTableProductListItem
-              key={index}
-              product={products.find((_product) => _product.id == product._id)}
-            />
-          ))}
+          {newInvoice.products.map((product, index) => {
+            let theproduct = {
+              ...products.find(
+                (_product) => _product.id == product.product._id
+              ),
+              quantity: product.quantity,
+            };
+            return (
+              <InvoiceSummaryTableProductListItem
+                key={index}
+                product={theproduct}
+              />
+            );
+          })}
         </List>
       </Grid>
     </Grid>
