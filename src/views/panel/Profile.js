@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
-import { Container, Grid, Typography, TextField, Button, Alert,Snackbar } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  Alert,
+  Snackbar,
+} from "@mui/material";
 import axios from "../../service/axios";
 
 export default function Profile() {
@@ -36,11 +44,14 @@ export default function Profile() {
   const updateUser = (e) => {
     //{userData}=> {userData:{name,companyName,address,uid,bankAccount,telefon,email}}
     //{...userData} => {name:name,companyName:companyName,address:address,uid:uid,bankAccount:bankAccount,telefon:telefon,email:email}
-    axios.post("/user/update", { ...userData }).then((res) => {
-      showAlert(res.data.message,"success");
-    }).catch((err) => {
-      showAlert("Something went wrong","error");
-    })
+    axios
+      .post("/user/update", { ...userData })
+      .then((res) => {
+        showAlert(res.data.message, "success");
+      })
+      .catch((err) => {
+        showAlert("Something went wrong", "error");
+      });
   };
   return (
     <Container
@@ -48,7 +59,7 @@ export default function Profile() {
         marginTop: "8rem",
       }}
     >
-       <Snackbar
+      <Snackbar
         open={alertData.open}
         autoHideDuration={6000}
         onClose={handleClose}

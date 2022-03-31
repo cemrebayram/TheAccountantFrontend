@@ -26,8 +26,7 @@ export default function CustomerDataTable() {
     dispatch(fetchCustomers());
   };
   useEffect(() => {
-    //ikinci parametresinde boş bir dizi varsa bunun gibi yalnızca bir kere çalışır.
-    dispatch(fetchCustomers()); //customerları serverdan çekiyoruz.
+    dispatch(fetchCustomers());
   }, []);
   const columns = [
     {

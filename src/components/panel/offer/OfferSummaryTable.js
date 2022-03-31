@@ -46,12 +46,20 @@ export default function OfferSummaryTable() {
         <br />
         <Typography variant="overline">Products</Typography>
         <List dense>
-          {newOffer.products.map((product, index) => (
-            <OfferSummaryTableProductListItem
-              key={index}
-              product={products.find((_product) => _product.id == product._id)}
-            />
-          ))}
+          {newOffer.products.map((product, index) => {
+            let theproduct = {
+              ...products.find(
+                (_product) => _product.id == product.product._id
+              ),
+              quantity: product.quantity,
+            };
+            return (
+              <OfferSummaryTableProductListItem
+                key={index}
+                product={theproduct}
+              />
+            );
+          })}
         </List>
       </Grid>
     </Grid>

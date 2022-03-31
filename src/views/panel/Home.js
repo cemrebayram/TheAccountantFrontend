@@ -7,7 +7,6 @@ import NavigationButtons from "../../components/panel/home/NavigationButtons";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  
   const navigate = useNavigate();
   const links = [
     { title: "Todo", to: "/panel/todo", color: "secondary" },
@@ -22,7 +21,6 @@ export default function Home() {
   useEffect(() => {
     if (!token) navigate("/login");
   }, []);
-
 
   return (
     <Container
@@ -43,8 +41,6 @@ export default function Home() {
         </Grid>
 
         <NavigationButtons links={links} />
-
-      
       </Grid>
     </Container>
   );
