@@ -60,7 +60,7 @@ export default function Offser() {
         sx={{ marginTop: "10px" }}
         fullWidth
         variant="contained"
-        color="warning"
+        color="secondary"
       >
         Create ContractNote
       </Button>
